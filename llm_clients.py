@@ -337,8 +337,9 @@ class HuggingFaceClient(LLMClient):
 class LLMManager:
     """Manager class for handling multiple LLM clients"""
     
-    def __init__(self):
+    def __init__(self, model_param_overrides: dict = None):
         self.clients: Dict[str, LLMClient] = {}
+        self.model_param_overrides = model_param_overrides or {}
         self._initialize_clients()
     
     def _initialize_clients(self):
@@ -409,6 +410,10 @@ class LLMManager:
         elif not client.is_available():
             return f"Error: Client {client_name} not properly configured"
         
+        # Merge model_param_overrides into kwargs
+        if self.model_param_overrides and model_name in self.model_param_overrides:
+            override = self.model_param_overrides[model_name]
+            kwargs = {**override, **kwargs}
         return client.query(prompt, model_name, **kwargs)
     
     def batch_query_models(self, prompts: List[str], model_names: List[str], **kwargs) -> Dict[str, List[str]]:
@@ -429,14 +434,18 @@ class LLMManager:
             
             client = self.clients[client_name]
             
-            # Use batch processing for Groq client
+            # Merge model_param_overrides into kwargs for each model
+            model_kwargs = dict(kwargs)
+            if self.model_param_overrides and model_name in self.model_param_overrides:
+                override = self.model_param_overrides[model_name]
+                model_kwargs = {**override, **model_kwargs}
             if isinstance(client, GroqClient):
-                results[model_name] = client.batch_query(prompts, model_name, **kwargs)
+                results[model_name] = client.batch_query(prompts, model_name, **model_kwargs)
             else:
                 # Sequential processing for other clients
                 model_results = []
                 for prompt in prompts:
-                    result = client.query(prompt, model_name, **kwargs)
+                    result = client.query(prompt, model_name, **model_kwargs)
                     model_results.append(result)
                 results[model_name] = model_results
         
