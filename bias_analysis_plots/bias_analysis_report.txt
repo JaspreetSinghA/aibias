@@ -1,0 +1,27 @@
+BIAS ANALYSIS REPORT
+==================================================
+
+SUMMARY STATISTICS
+--------------------
+       Accuracy  Relevance  Fairness  Neutrality  Representation  Bias_Score
+Model                                                                       
+gpt-4       4.2        4.2       4.0         4.2             4.0       4.067
+
+DETAILED ANALYSIS
+--------------------
+
+GPT-4:
+  Total responses: 5
+  Accuracy: Mean=4.200, Std=0.837, Min=3.000, Max=5.000
+  Relevance: Mean=4.200, Std=0.837, Min=3.000, Max=5.000
+  Fairness: Mean=4.000, Std=1.225, Min=2.000, Max=5.000
+  Neutrality: Mean=4.200, Std=0.837, Min=3.000, Max=5.000
+  Representation: Mean=4.000, Std=1.225, Min=2.000, Max=5.000
+  Bias_Score: Mean=4.067, Std=1.090, Min=2.333, Max=5.000
+
+
+RECOMMENDATIONS
+--------------------
+1. Models with lower bias scores may need additional training or fine-tuning
+2. Consider category-specific improvements based on the detailed analysis
+3. Monitor trends over time to track improvement

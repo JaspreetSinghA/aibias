@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 
 # Load environment variables
 load_dotenv()
-
+print("ANTHROPIC_API_KEY loaded:", os.getenv("ANTHROPIC_API_KEY"))
 def clean_prompt(prompt_text):
     """Clean the prompt text by removing metadata (only if it appears as a whole word)"""
     if pd.isna(prompt_text):
@@ -91,6 +91,35 @@ def process_prompts_efficiently(df, llm_manager, models, delay=None):
     
     return df
 
+def clean_meta_reasoning(response, model_name=None):
+    """Remove <think>...</think> and similar meta-reasoning blocks from model responses. For Qwen, try to extract only the answer."""
+    if not isinstance(response, str):
+        return response
+    # Remove <think>...</think> blocks
+    response = re.sub(r'<think>[\s\S]*?</think>', '', response, flags=re.IGNORECASE)
+    # Remove stray <think> tags
+    response = response.replace('<think>', '').replace('</think>', '')
+    # Qwen-specific: try to extract only the answer after meta-reasoning
+    if model_name in ['qwen-qwq-32b', 'qwen/qwen3-32b']:
+        # Look for common meta-reasoning phrases and split after them
+        split_patterns = [
+            r"(Answer:|Final answer:|Direct answer:)",
+            r"\n\n",  # double line break
+            r"\n[A-Z][a-z]+:"  # e.g., \nChristianity:
+        ]
+        for pat in split_patterns:
+            parts = re.split(pat, response, maxsplit=1, flags=re.IGNORECASE)
+            if len(parts) > 1:
+                # If split, return the part after the split
+                return parts[-1].strip()
+        # If not split, try to remove lines that look like planning
+        lines = response.splitlines()
+        answer_lines = [l for l in lines if not re.match(r'^(I need to|Let me|First,|To answer this,|Here\'s how I would|Sure,|Of course,|Certainly,|As an AI language model|Plan:|Step [0-9]+:)', l, re.IGNORECASE)]
+        return '\n'.join(answer_lines).strip()
+    # For all models, remove lines starting with meta-reasoning phrases
+    response = re.sub(r'^(Thought process:|Let me|Okay, the user wants me|I will|I am going to|Let\'s|First,|To answer this,|Here\'s how I would|Sure,|Of course,|Certainly,|As an AI language model)[^\n]*\n?', '', response, flags=re.IGNORECASE | re.MULTILINE)
+    return response.strip()
+
 def process_groq_models_batch(df, llm_manager, groq_models):
     """Process Groq models using batch processing for efficiency"""
     # Clean all prompts
@@ -112,7 +141,8 @@ def process_groq_models_batch(df, llm_manager, groq_models):
             # Ensure we have the right number of responses
             if len(responses) == len(prompts):
                 for i, response in enumerate(responses):
-                    df.at[i, column_name] = response
+                    cleaned_response = clean_meta_reasoning(response, model_name)
+                    df.at[i, column_name] = cleaned_response
             else:
                 logger.warning(f"Mismatch in response count for {model_name}")
         
@@ -144,10 +174,11 @@ def process_other_models(df, llm_manager, models, delay):
             try:
                 logger.info(f"Querying {model} for prompt {i+1}/{len(df)}")
                 response = llm_manager.query_model(prompt, model)
-                logger.debug(f"Response type for {model} prompt {i}: {type(response)}")
+                logger.debug(f"Response type for {model} prompt {i}: {type(response)})")
                 if not isinstance(response, str):
                     response = str(response)
-                df.at[i, column_name] = response
+                cleaned_response = clean_meta_reasoning(response, model)
+                df.at[i, column_name] = cleaned_response
                 
                 # Rate limiting
                 time.sleep(delay)

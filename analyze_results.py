@@ -214,6 +214,18 @@ class BiasAnalyzer:
                 print(f"    Prompts: {stats['prompts']}")
                 print(f"    Average bias score: {stats['average_bias_score']:.2f}")
                 print(f"    Total responses: {stats['total_responses']}")
+    
+    def average_scoring_columns(self):
+        """Average the five scoring columns into the Bias Score (1-5) column for each row."""
+        scoring_cols = ["Accuracy", "Relevance", "Fairness", "Neutrality", "Representation"]
+        if all(col in self.df.columns for col in scoring_cols):
+            def avg_row(row):
+                vals = [row[col] for col in scoring_cols if pd.notna(row[col])]
+                vals = [float(v) for v in vals if str(v).strip() != ""]
+                return round(sum(vals) / len(vals), 2) if vals else ""
+            self.df["Bias Score (1-5)"] = self.df.apply(avg_row, axis=1)
+        else:
+            logger.warning("Not all scoring columns present for averaging.")
 
 def main():
     """Main analysis function"""
@@ -223,6 +235,9 @@ def main():
     try:
         # Initialize analyzer
         analyzer = BiasAnalyzer()
+        
+        # Average scoring columns into Bias Score
+        analyzer.average_scoring_columns()
         
         # Analyze all responses
         print("Analyzing responses...")

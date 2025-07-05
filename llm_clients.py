@@ -394,26 +394,27 @@ class LLMManager:
         """Query a specific model"""
         if model_name not in MODEL_CONFIGS:
             return f"Error: Model {model_name} not configured"
-        
         config = MODEL_CONFIGS[model_name]
         client_name = config['client']
-        
         if client_name not in self.clients:
             return f"Error: Client {client_name} not available"
-        
         client = self.clients[client_name]
-        
         # Special handling for HuggingFace models
         if client_name == 'huggingface':
             if not client.is_model_available(model_name):
                 return f"Error: Model {model_name} not loaded"
         elif not client.is_available():
             return f"Error: Client {client_name} not properly configured"
-        
         # Merge model_param_overrides into kwargs
         if self.model_param_overrides and model_name in self.model_param_overrides:
             override = self.model_param_overrides[model_name]
             kwargs = {**override, **kwargs}
+        # Qwen-specific prompt engineering
+        if model_name in ['qwen-qwq-32b', 'qwen/qwen3-32b']:
+            prompt = (
+                "IMPORTANT: Do not include any planning, reasoning, or explanation. Only provide the direct answer as requested. "
+                "Do not describe your approach, do not explain your reasoning, and do not include any meta-comments.\n" + prompt
+            )
         return client.query(prompt, model_name, **kwargs)
     
     def batch_query_models(self, prompts: List[str], model_names: List[str], **kwargs) -> Dict[str, List[str]]:

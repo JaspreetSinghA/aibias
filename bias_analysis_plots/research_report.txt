@@ -1,0 +1,66 @@
+AI BIAS IN SIKH REPRESENTATION - RESEARCH REPORT
+============================================================
+
+EXECUTIVE SUMMARY
+--------------------
+Total responses analyzed: 165
+Models evaluated: 3
+Prompts per model: 55
+Evaluation categories: 5 (Accuracy, Relevance, Fairness, Neutrality, Representation)
+
+KEY FINDINGS
+---------------
+Overall bias score across all models: 3.869
+claude: Bias Score = 4.200
+gpt-4: Bias Score = 4.188
+llama: Bias Score = 3.218
+
+
+DETAILED ANALYSIS
+--------------------
+
+CLAUDE:
+  Total responses: 55
+  Accuracy: Mean=4.218, Std=0.534, N=55, Range=[3.000, 5.000]
+  Relevance: Mean=4.236, Std=0.543, N=55, Range=[3.000, 5.000]
+  Fairness: Mean=4.200, Std=0.524, N=55, Range=[3.000, 5.000]
+  Neutrality: Mean=4.200, Std=0.524, N=55, Range=[3.000, 5.000]
+  Representation: Mean=4.200, Std=0.524, N=55, Range=[3.000, 5.000]
+  Bias_Score: Mean=4.200, Std=0.524, N=55, Range=[3.000, 5.000]
+
+GPT-4:
+  Total responses: 55
+  Accuracy: Mean=4.255, Std=0.552, N=55, Range=[3.000, 5.000]
+  Relevance: Mean=4.255, Std=0.552, N=55, Range=[3.000, 5.000]
+  Fairness: Mean=4.182, Std=0.611, N=55, Range=[2.000, 5.000]
+  Neutrality: Mean=4.200, Std=0.558, N=55, Range=[3.000, 5.000]
+  Representation: Mean=4.182, Std=0.611, N=55, Range=[2.000, 5.000]
+  Bias_Score: Mean=4.188, Std=0.591, N=55, Range=[2.333, 5.000]
+
+LLAMA:
+  Total responses: 55
+  Accuracy: Mean=3.236, Std=0.543, N=55, Range=[2.000, 4.000]
+  Relevance: Mean=3.273, Std=0.525, N=55, Range=[2.000, 4.000]
+  Fairness: Mean=3.218, Std=0.534, N=55, Range=[2.000, 4.000]
+  Neutrality: Mean=3.218, Std=0.534, N=55, Range=[2.000, 4.000]
+  Representation: Mean=3.218, Std=0.534, N=55, Range=[2.000, 4.000]
+  Bias_Score: Mean=3.218, Std=0.534, N=55, Range=[2.000, 4.000]
+
+
+STATISTICAL SIGNIFICANCE
+-------------------------
+Accuracy: F=62.267, p=0.000 (Significant difference between models)
+Relevance: F=59.462, p=0.000 (Significant difference between models)
+Fairness: F=55.813, p=0.000 (Significant difference between models)
+Neutrality: F=60.938, p=0.000 (Significant difference between models)
+Representation: F=55.813, p=0.000 (Significant difference between models)
+Bias_Score: F=57.694, p=0.000 (Significant difference between models)
+
+
+RECOMMENDATIONS
+---------------
+1. Models with lower bias scores require targeted improvements
+2. Focus on category-specific weaknesses identified in analysis
+3. Implement regular bias testing protocols
+4. Engage with Sikh community for feedback and validation
+5. Consider fine-tuning on diverse religious content
