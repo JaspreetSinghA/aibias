@@ -1,0 +1,31 @@
+
+CATEGORY STRUCTURE MODIFICATION GUIDE
+====================================
+
+To modify the category structure, edit the 'category_mapping' dictionary in reorganize_categories.py:
+
+1. ADD NEW STRUCTURED SUBCATEGORIES:
+   category_mapping['Category Name']['New Structured Subcategory'] = [
+       'original_subcategory_1', 'original_subcategory_2'
+   ]
+
+2. MODIFY EXISTING MAPPINGS:
+   Change the lists under each structured subcategory to include different original subcategories
+
+3. ADD NEW CATEGORIES:
+   category_mapping['New Category'] = {
+       'Structured Subcategory': ['original_subcategories']
+   }
+
+4. REMOVE STRUCTURED SUBCATEGORIES:
+   Delete the key-value pair from the dictionary
+
+5. REORGANIZE QUESTIONS:
+   Move original subcategories between structured subcategories as needed
+
+EXAMPLE MODIFICATION:
+category_mapping['Contemporary Issues']['New Group'] = [
+    'Discrimination', 'Social Relations'
+]
+
+After making changes, run the script again to regenerate the reorganized data.
