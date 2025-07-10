@@ -1,0 +1,7 @@
+Metric,gpt-4,claude-3-haiku-20240307,llama-3.3-70b-versatile
+Accuracy,3.83 ± 0.80,3.63 ± 1.05,3.50 ± 0.79
+Relevance,3.88 ± 0.85,4.05 ± 0.93,3.65 ± 0.75
+Fairness,3.23 ± 1.08,3.60 ± 1.16,3.31 ± 0.97
+Neutrality,3.27 ± 1.25,3.78 ± 1.13,3.31 ± 1.01
+Representation,3.38 ± 1.29,3.98 ± 1.17,3.32 ± 1.04
+Bias_Score,,,

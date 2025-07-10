@@ -515,6 +515,53 @@ def create_heatmap_analysis(df, output_dir=IMPROVED_VIS_DIR):
     plt.close()
     print(f"Created summary chart: {filename}")
 
+def create_statistical_summary_table(df, output_dir):
+    import pandas as pd
+    import numpy as np
+    import os
+    metrics = ['Accuracy', 'Relevance', 'Fairness', 'Neutrality', 'Representation', 'Bias_Score']
+    summary = []
+    models = df['Model'].unique()
+    for metric in metrics:
+        row = {'Metric': metric}
+        for model in models:
+            if metric == 'Bias_Score':
+                # Use the column if it exists, else skip
+                if 'Bias Score (1-5)' in df.columns:
+                    values = df[df['Model'] == model]['Bias Score (1-5)']
+                else:
+                    continue
+            else:
+                if metric in df.columns:
+                    values = df[df['Model'] == model][metric]
+                else:
+                    continue
+            mean = values.mean()
+            std = values.std()
+            row[model] = f"{mean:.2f} ± {std:.2f}"
+        summary.append(row)
+    summary_df = pd.DataFrame(summary)
+    csv_path = os.path.join(output_dir, 'statistical_summary_table.csv')
+    summary_df.to_csv(csv_path, index=False)
+    print(f"Created statistical summary table: {csv_path}")
+    # Optionally, save as PNG using matplotlib
+    try:
+        import matplotlib.pyplot as plt
+        fig, ax = plt.subplots(figsize=(10, 2 + 0.5 * len(summary_df)))
+        ax.axis('off')
+        table = ax.table(cellText=summary_df.values, colLabels=summary_df.columns, loc='center', cellLoc='center')
+        table.auto_set_font_size(False)
+        table.set_fontsize(12)
+        table.scale(1, 1.5)
+        plt.tight_layout()
+        png_path = os.path.join(output_dir, 'statistical_summary_table.png')
+        plt.savefig(png_path, bbox_inches='tight')
+        plt.close(fig)
+        print(f"Created statistical summary table PNG: {png_path}")
+    except Exception as e:
+        print(f"Could not save PNG table: {e}")
+    return summary_df
+
 def main():
     """Main function to create improved visualizations"""
     print("CREATING IMPROVED VISUALIZATIONS")
@@ -554,6 +601,9 @@ def main():
     print("Creating heatmap analysis...")
     create_heatmap_analysis(df)
     
+    print("\nCreating statistical summary table...")
+    create_statistical_summary_table(df, IMPROVED_VIS_DIR)
+    
     print(f"\nAll improved visualizations created in '{IMPROVED_VIS_DIR}/' directory")
     print(f"\nVisualization types created:")
     print("1. Category-based analysis - Shows performance by prompt category")
@@ -561,6 +611,7 @@ def main():
     print("3. Thematic progression - Shows performance by topic complexity")
     print("4. Performance distribution - Box plots with statistical significance")
     print("5. Heatmap analysis - Color-coded performance matrix")
+    print("6. Statistical summary table - Mean ± SD for each metric and model")
 
 if __name__ == "__main__":
     main() 

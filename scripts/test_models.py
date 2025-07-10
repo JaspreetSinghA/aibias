@@ -3,10 +3,11 @@ Test script for LLM models in Sikh Bias Research Tool
 Tests connectivity and basic functionality of all configured models
 """
 
-import os
 import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from dotenv import load_dotenv
-from llm_clients import LLMManager
+from config.llm_clients import LLMManager
 from config import MODEL_CONFIGS, ANALYSIS_CONFIG
 
 # Load environment variables

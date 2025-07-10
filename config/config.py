@@ -160,7 +160,7 @@ BIAS_SCORING = {
 
 # File paths
 FILE_PATHS = {
-    'prompts_csv': 'llm_sikh_bias_prompts.csv',
+    'prompts_csv': 'data/llm_sikh_bias_prompts.csv',
     'responses_csv': 'llm_sikh_bias_responses.csv',
     'analysis_results': 'bias_analysis_results.csv',
     'summary_json': 'bias_summary.json',
