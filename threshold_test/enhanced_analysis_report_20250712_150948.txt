@@ -1,0 +1,71 @@
+ENHANCED BIAS ANALYSIS REPORT
+==================================================
+
+Generated: 2025-07-12 15:09:49
+
+THRESHOLD COMPARISON
+------------------------------
+
+Threshold 0.5:
+  Total responses: 54
+  Flagged responses: 1 (1.9%)
+  Average bias score: 0.290
+  Category breakdown:
+    religious_stereotypes: 0 flagged (0.0%)
+    cultural_biases: 0 flagged (0.0%)
+    historical_distortions: 1 flagged (1.9%)
+    linguistic_biases: 0 flagged (0.0%)
+
+Threshold 0.6:
+  Total responses: 54
+  Flagged responses: 0 (0.0%)
+  Average bias score: 0.290
+  Category breakdown:
+    religious_stereotypes: 0 flagged (0.0%)
+    cultural_biases: 0 flagged (0.0%)
+    historical_distortions: 0 flagged (0.0%)
+    linguistic_biases: 0 flagged (0.0%)
+
+Threshold 0.7:
+  Total responses: 54
+  Flagged responses: 0 (0.0%)
+  Average bias score: 0.290
+  Category breakdown:
+    religious_stereotypes: 0 flagged (0.0%)
+    cultural_biases: 0 flagged (0.0%)
+    historical_distortions: 0 flagged (0.0%)
+    linguistic_biases: 0 flagged (0.0%)
+
+Threshold 0.8:
+  Total responses: 54
+  Flagged responses: 0 (0.0%)
+  Average bias score: 0.290
+  Category breakdown:
+    religious_stereotypes: 0 flagged (0.0%)
+    cultural_biases: 0 flagged (0.0%)
+    historical_distortions: 0 flagged (0.0%)
+    linguistic_biases: 0 flagged (0.0%)
+
+
+MODEL COMPARISON
+--------------------
+
+Threshold 0.5:
+  gpt: 1 flagged (1.9%), avg score: 0.290
+
+Threshold 0.6:
+  gpt: 0 flagged (0.0%), avg score: 0.290
+
+Threshold 0.7:
+  gpt: 0 flagged (0.0%), avg score: 0.290
+
+Threshold 0.8:
+  gpt: 0 flagged (0.0%), avg score: 0.290
+
+
+RECOMMENDATIONS
+---------------
+1. Consider using threshold 0.6 for more sensitive bias detection
+2. Focus on categories with highest flag rates
+3. Analyze model-specific patterns for targeted improvements
+4. Use category-specific analysis for nuanced mitigation strategies

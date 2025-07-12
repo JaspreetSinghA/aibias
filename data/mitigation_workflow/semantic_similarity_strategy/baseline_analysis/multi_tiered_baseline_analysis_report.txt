@@ -1,0 +1,132 @@
+MULTI-TIERED BASELINE BIAS ANALYSIS REPORT
+============================================================
+
+Generated: 2025-07-12 15:17:52
+
+ANALYSIS OVERVIEW:
+--------------------
+Total models analyzed: 3
+Total responses analyzed: 162
+Threshold levels analyzed: [0.3, 0.4, 0.5, 0.6, 0.7]
+
+MULTI-TIERED THRESHOLD RESULTS:
+-----------------------------------
+
+THRESHOLD ≥ 0.3:
+  Total flagged responses: 55
+  Overall flagged percentage: 34.0%
+
+  GPT:
+    Flagged: 19/54 (35.2%)
+    Mean score: 0.278
+    Max score: 0.584
+
+  CLAUDE:
+    Flagged: 18/54 (33.3%)
+    Mean score: 0.279
+    Max score: 0.425
+
+  LLAMA:
+    Flagged: 18/54 (33.3%)
+    Mean score: 0.273
+    Max score: 0.458
+
+THRESHOLD ≥ 0.4:
+  Total flagged responses: 7
+  Overall flagged percentage: 4.3%
+
+  GPT:
+    Flagged: 3/54 (5.6%)
+    Mean score: 0.278
+    Max score: 0.584
+
+  CLAUDE:
+    Flagged: 2/54 (3.7%)
+    Mean score: 0.279
+    Max score: 0.425
+
+  LLAMA:
+    Flagged: 2/54 (3.7%)
+    Mean score: 0.273
+    Max score: 0.458
+
+THRESHOLD ≥ 0.5:
+  Total flagged responses: 1
+  Overall flagged percentage: 0.6%
+
+  GPT:
+    Flagged: 1/54 (1.9%)
+    Mean score: 0.278
+    Max score: 0.584
+
+  CLAUDE:
+    Flagged: 0/54 (0.0%)
+    Mean score: 0.279
+    Max score: 0.425
+
+  LLAMA:
+    Flagged: 0/54 (0.0%)
+    Mean score: 0.273
+    Max score: 0.458
+
+THRESHOLD ≥ 0.6:
+  Total flagged responses: 0
+  Overall flagged percentage: 0.0%
+
+  GPT:
+    Flagged: 0/54 (0.0%)
+    Mean score: 0.278
+    Max score: 0.584
+
+  CLAUDE:
+    Flagged: 0/54 (0.0%)
+    Mean score: 0.279
+    Max score: 0.425
+
+  LLAMA:
+    Flagged: 0/54 (0.0%)
+    Mean score: 0.273
+    Max score: 0.458
+
+THRESHOLD ≥ 0.7:
+  Total flagged responses: 0
+  Overall flagged percentage: 0.0%
+
+  GPT:
+    Flagged: 0/54 (0.0%)
+    Mean score: 0.278
+    Max score: 0.584
+
+  CLAUDE:
+    Flagged: 0/54 (0.0%)
+    Mean score: 0.279
+    Max score: 0.425
+
+  LLAMA:
+    Flagged: 0/54 (0.0%)
+    Mean score: 0.273
+    Max score: 0.458
+
+KEY INSIGHTS:
+---------------
+
+1. Threshold Sensitivity:
+   - At 0.3 threshold: 55 responses flagged
+   - At 0.7 threshold: 0 responses flagged
+
+2. Model Comparison:
+   - All models show similar bias score distributions
+   - Subtle differences become apparent at lower thresholds
+
+3. Research Implications:
+   - Conservative 0.7 threshold misses subtle biases
+   - Lower thresholds (0.3-0.5) capture more nuanced bias patterns
+   - Multi-tiered approach provides comprehensive bias assessment
+
+FILES GENERATED:
+------------------
+- Multi-tiered flagged percentage comparison
+- Threshold progression analysis
+- Enhanced score distribution with threshold lines
+- Comprehensive summary heatmap
+- Detailed CSV tables for each threshold level
