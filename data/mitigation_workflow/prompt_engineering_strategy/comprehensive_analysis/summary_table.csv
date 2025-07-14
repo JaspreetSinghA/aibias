@@ -1,0 +1,4 @@
+Strategy,Avg_Accuracy,Avg_Relevance,Avg_Fairness,Avg_Neutrality,Avg_Representation,Avg_Bias_Composite
+contextual,4.067,3.733,3.533,4.133,3.333,3.76
+instructional,3.867,3.8,3.8,3.8,3.6,3.773
+retrieval_based,4.4,4.267,4.067,3.933,4.0,4.133

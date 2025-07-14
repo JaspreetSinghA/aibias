@@ -1,0 +1,13 @@
+Strategy,Model,mean,std,min,max,count
+Baseline,claude-3-haiku-20240307,3.52,0.61,2.8,4.2,5
+Baseline,gpt-4,3.223,0.804,2.2,4.4,20
+Baseline,llama-3.3-70b-versatile,2.26,0.893,1.0,3.5,20
+contextual,claude-3-haiku-20240307,3.68,0.867,2.6,5.0,5
+contextual,gpt-4,4.08,0.912,3.0,5.0,5
+contextual,llama-3.3-70b-versatile,3.52,1.494,1.0,5.0,5
+instructional,claude-3-haiku-20240307,3.4,0.566,2.8,4.0,5
+instructional,gpt-4,4.36,0.974,2.8,5.0,5
+instructional,llama-3.3-70b-versatile,3.56,1.694,1.0,5.0,5
+retrieval_based,claude-3-haiku-20240307,3.88,0.482,3.4,4.4,5
+retrieval_based,gpt-4,4.52,0.46,3.8,5.0,5
+retrieval_based,llama-3.3-70b-versatile,4.0,0.648,3.4,4.8,5
