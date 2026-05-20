@@ -1,0 +1,21 @@
+model,dimension,n,krippendorff_alpha,alpha_label,weighted_kappa,kappa_label,rater1_mean,rater1_std,rater2_mean,rater2_std,combined_mean,stat_type,mann_whitney_U,p_value,significance,effect_r
+GPT-4,Accuracy,54,-0.1183,below chance,-0.111,below chance,3.87,1.082,4.333,0.801,4.102,IRA,,,,
+GPT-4,Relevance,54,-0.4345,below chance,-0.0206,below chance,3.537,1.094,4.889,0.317,4.213,IRA,,,,
+GPT-4,Fairness,54,0.0182,slight,0.0081,slight,3.185,1.361,3.685,1.113,3.435,IRA,,,,
+GPT-4,Neutrality,53,-0.0513,below chance,0.025,slight,3.019,1.563,4.057,0.989,3.538,IRA,,,,
+GPT-4,Representation,53,-0.0311,below chance,0.13,slight,3.151,1.549,4.057,1.117,3.604,IRA,,,,
+LLaMA-3.3-70B,Accuracy,54,0.3246,fair,0.17,slight,3.519,0.947,4.019,0.942,3.769,IRA,,,,
+LLaMA-3.3-70B,Relevance,54,0.1979,slight,0.0378,slight,3.87,0.912,3.981,0.942,3.926,IRA,,,,
+LLaMA-3.3-70B,Fairness,54,0.1981,slight,0.1104,slight,3.426,1.159,3.648,1.135,3.537,IRA,,,,
+LLaMA-3.3-70B,Neutrality,54,0.2342,fair,0.1628,slight,3.407,1.221,3.704,1.16,3.556,IRA,,,,
+LLaMA-3.3-70B,Representation,54,0.2006,fair,0.1412,slight,3.5,1.384,3.685,1.096,3.593,IRA,,,,
+Claude-3-Haiku,Accuracy,16,-0.5688,below chance,-0.3151,below chance,3.5,1.095,4.125,0.806,3.812,IRA,,,,
+Claude-3-Haiku,Relevance,16,-0.102,below chance,-0.0909,below chance,4.125,0.806,4.188,0.834,4.156,IRA,,,,
+Claude-3-Haiku,Fairness,16,0.2418,fair,0.0909,slight,3.438,1.365,4.062,0.998,3.75,IRA,,,,
+Claude-3-Haiku,Neutrality,16,0.2565,fair,0.1351,slight,3.75,1.183,4.125,0.885,3.938,IRA,,,,
+Claude-3-Haiku,Representation,16,-0.1281,below chance,-0.193,below chance,4.312,0.946,4.125,0.719,4.219,IRA,,,,
+GPT-4 vs LLaMA,Accuracy,108 vs 108,,,,,4.102,0.976,3.769,0.973,,cross_model_comparison,7035.0,0.005832,**,-0.2063
+GPT-4 vs LLaMA,Relevance,108 vs 108,,,,,4.213,1.051,3.926,0.924,,cross_model_comparison,7132.0,0.002585,**,-0.2229
+GPT-4 vs LLaMA,Fairness,108 vs 108,,,,,3.435,1.262,3.537,1.147,,cross_model_comparison,5615.5,0.626616,ns,0.0371
+GPT-4 vs LLaMA,Neutrality,106 vs 108,,,,,3.538,1.402,3.556,1.194,,cross_model_comparison,5854.0,0.767926,ns,-0.0227
+GPT-4 vs LLaMA,Representation,106 vs 108,,,,,3.604,1.419,3.593,1.246,,cross_model_comparison,5926.0,0.645663,ns,-0.0353

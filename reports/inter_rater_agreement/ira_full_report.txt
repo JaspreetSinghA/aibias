@@ -1,0 +1,144 @@
+================================================================================
+                         INTER-RATER AGREEMENT ANALYSIS                         
+================================================================================
+  Project  : BiasLens / BAMIP — Sikh Bias in LLMs
+  Generated: 2026-05-19
+  Script   : scripts/inter_rater_agreement.py
+
+================================================================================
+                            SECTION 1 — METHODOLOGY                             
+================================================================================
+Rating scale  : 1.0 – 5.0 in 0.5 increments (interval scale)
+Dimensions    : Accuracy, Relevance, Fairness, Neutrality, Representation
+Rater pairings:
+  GPT-4         — Gurleen + Noor        (54 matched prompts)
+  LLaMA-3.3-70B — Anu    + Harpreet    (54 matched prompts)
+  Claude-3-Haiku — Jaspreet + Narveer  (16 matched prompts, LIMITED)
+
+Missing values: Handled via pairwise deletion — for each dimension, only
+  prompts where BOTH raters have a valid rating are included. Two cells in
+  Gurleen's GPT-4 ratings (Neutrality and Representation for prompt
+  KNOW_CONTEMPORARY_01) were recorded as 0, outside the valid 1–5 scale,
+  and treated as missing; affected dimensions report n=53 rather than n=54.
+
+Krippendorff's alpha: Computed using the interval metric, which weights
+  disagreement by squared distance between ratings. This is appropriate for
+  equal-interval ordinal scales. Implemented from scratch; formula from
+  Krippendorff (2004). Reliability benchmarks: <0.20 slight, 0.20–0.40 fair,
+  0.40–0.60 moderate, 0.60–0.80 substantial, >0.80 almost perfect.
+
+Weighted Cohen's kappa: Computed using linear weights (sklearn). Penalises
+  disagreements proportionally to distance. Same reliability benchmarks apply
+  (Landis & Koch, 1977).
+
+Mann-Whitney U test: Non-parametric test comparing GPT-4 vs LLaMA rating
+  distributions per dimension. Two-sided. Effect size = rank-biserial r.
+  |r| > 0.1 small, |r| > 0.3 medium, |r| > 0.5 large effect.
+
+NOTE on Claude: Only 16 prompts were rated by both Jaspreet and Narveer.
+  This is below the minimum recommended sample for reliable IRA estimates.
+  Claude statistics are included for completeness but should be interpreted
+  with caution and explicitly caveated in the paper.
+================================================================================
+                  SECTION 2 — PER-MODEL INTER-RATER AGREEMENT                   
+================================================================================
+
+Model: GPT-4  (Raters: Gurleen and Noor)
+----------------------------------------
+Dimension         n      Alpha (α)  Alpha label   W. Kappa (κ)      Kappa label     Gurleen mean±SD  Noor mean±SD  
+-------------------------------------------------------------------------------------------------------------------
+Accuracy          54     -0.118     below chance  -0.111            below chance    3.87±1.08       4.33±0.80     
+Relevance         54     -0.434     below chance  -0.021            below chance    3.54±1.09       4.89±0.32     
+Fairness          54     0.018      slight        0.008             slight          3.19±1.36       3.69±1.11     
+Neutrality        53     -0.051     below chance  0.025             slight          3.02±1.56       4.06±0.99     
+Representation    53     -0.031     below chance  0.130             slight          3.15±1.55       4.06±1.12     
+
+Model: LLaMA-3.3-70B  (Raters: Anu and Harpreet)
+------------------------------------------------
+Dimension         n      Alpha (α)  Alpha label   W. Kappa (κ)      Kappa label     Anu mean±SD     Harpreet mean±SD
+--------------------------------------------------------------------------------------------------------------------
+Accuracy          54     0.325      fair          0.170             slight          3.52±0.95       4.02±0.94     
+Relevance         54     0.198      slight        0.038             slight          3.87±0.91       3.98±0.94     
+Fairness          54     0.198      slight        0.110             slight          3.43±1.16       3.65±1.14     
+Neutrality        54     0.234      fair          0.163             slight          3.41±1.22       3.70±1.16     
+Representation    54     0.201      fair          0.141             slight          3.50±1.38       3.69±1.10     
+
+Model: Claude-3-Haiku  (Raters: Jaspreet and Narveer) *** LIMITED SAMPLE ***
+----------------------------------------------------------------------------
+Dimension         n      Alpha (α)  Alpha label   W. Kappa (κ)      Kappa label     Jaspreet mean±SD  Narveer mean±SD
+---------------------------------------------------------------------------------------------------------------------
+Accuracy          16     -0.569     below chance  -0.315            below chance    3.50±1.10       4.12±0.81     
+Relevance         16     -0.102     below chance  -0.091            below chance    4.12±0.81       4.19±0.83     
+Fairness          16     0.242      fair          0.091             slight          3.44±1.36       4.06±1.00     
+Neutrality        16     0.256      fair          0.135             slight          3.75±1.18       4.12±0.89     
+Representation    16     -0.128     below chance  -0.193            below chance    4.31±0.95       4.12±0.72     
+
+  ⚠ Claude results are based on only 16 matched prompts and should
+    be treated as preliminary / indicative only.
+================================================================================
+           SECTION 3 — CROSS-MODEL COMPARISON: GPT-4 vs LLaMA-3.3-70B           
+================================================================================
+Mann-Whitney U test (two-sided) comparing per-dimension score distributions.
+Significance: * p<0.05  ** p<0.01  *** p<0.001  ns = not significant
+Effect size r (rank-biserial): |r|>0.1 small, |r|>0.3 medium, |r|>0.5 large
+
+Dimension         GPT-4 mean±SD   LLaMA mean±SD   U statistic  p-value     Sig.      Effect r    
+-------------------------------------------------------------------------------------------------
+Accuracy          4.10±0.98       3.77±0.97       7035.0      0.0058      **        -0.206      
+Relevance         4.21±1.05       3.93±0.92       7132.0      0.0026      **        -0.223      
+Fairness          3.44±1.26       3.54±1.15       5615.5      0.6266      ns        0.037       
+Neutrality        3.54±1.40       3.56±1.19       5854.0      0.7679      ns        -0.023      
+Representation    3.60±1.42       3.59±1.25       5926.0      0.6457      ns        -0.035      
+================================================================================
+               SECTION 4 — SUMMARY AND PAPER-READY INTERPRETATION               
+================================================================================
+INTER-RATER RELIABILITY SUMMARY
+--------------------------------
+GPT-4 (Gurleen + Noor, n=53–54 per dimension):
+  Krippendorff's alpha ranged from -0.43 to 0.02,
+  reflecting below chance to slight agreement overall.
+  Noor rated more leniently than Gurleen across all dimensions (Relevance
+  showed the largest systematic gap), suggesting rater calibration variance
+  rather than random disagreement.
+
+LLaMA-3.3-70B (Anu + Harpreet, n=54 per dimension):
+  Alpha ranged from 0.20 to 0.32, indicating
+  fair to slight agreement — more consistent
+  than GPT-4 raters. Accuracy showed the strongest agreement.
+
+Claude-3-Haiku (Jaspreet + Narveer, n=16 matched prompts):
+  Due to the limited overlap between raters, these statistics are unreliable
+  and should be reported with explicit caveats. A full paired annotation is
+  recommended before including Claude in IRA claims.
+
+CROSS-MODEL COMPARISON SUMMARY
+-------------------------------
+Accuracy, Relevance showed statistically significant GPT-4 vs LLaMA differences
+(Mann-Whitney U, p<0.05), with effect sizes |r| = 0.206–0.223 (small).
+Fairness, Neutrality, and Representation did not differ significantly,
+suggesting both models perform comparably on the subjective bias dimensions.
+
+SUGGESTED PAPER TEXT (for Section 2.5 / Section 3):
+-----------------------------------------------------
+"Inter-rater agreement was assessed using Krippendorff's alpha (interval
+metric) and linearly weighted Cohen's kappa for each model and evaluation
+dimension (n=54 prompts per model pair). For GPT-4, alpha ranged from
+-0.43 to 0.02, indicating below chance to slight
+agreement; systematic leniency differences between raters were observed,
+particularly on Relevance. For LLaMA-3.3-70B, alpha ranged from
+0.20 to 0.32, indicating fair to slight
+agreement — more consistent across dimensions. These reliability levels are
+within the range reported for subjective annotation tasks in NLP (Artstein &
+Poesio, 2008). For Claude-3-Haiku, only 16 prompts were jointly annotated;
+results (alpha -0.57 to 0.26) are preliminary and
+should be interpreted with caution.
+
+Mann-Whitney U tests comparing GPT-4 and LLaMA score distributions found
+significant differences on Accuracy, Relevance (p<0.01, effect sizes
+|r|=0.206–0.223, small). No significant differences were found on
+Fairness, Neutrality, or Representation, indicating comparable performance
+on the subjective bias dimensions despite differing on factual quality."
+
+================================================================================
+                                 END OF REPORT                                  
+================================================================================

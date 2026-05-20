@@ -31,8 +31,8 @@ def find_lowest_scored_prompts():
     
     # Look for files with specific patterns
     patterns = [
-        "llm_sikh_bias_responses_*.csv",
-        "llm_sikh_bias_responses.csv"  # Main combined file
+        "processed/llm_sikh_bias_responses_*.csv",
+        "combined/llm_sikh_bias_responses.csv"  # Main combined file
     ]
     
     for pattern in patterns:
@@ -108,7 +108,7 @@ def find_lowest_scored_prompts():
         
         # Try to get prompt text from the main file
         try:
-            main_df = pd.read_csv("data/llm_sikh_bias_responses.csv")
+            main_df = pd.read_csv("data/combined/llm_sikh_bias_responses.csv")
             prompt_row = main_df[main_df['Prompt ID'] == prompt_id]
             if not prompt_row.empty:
                 prompt_text = prompt_row.iloc[0]['Prompt Text']
@@ -123,7 +123,7 @@ def find_lowest_scored_prompts():
     results_data = []
     for prompt_id, data in sorted_prompts:
         try:
-            main_df = pd.read_csv("data/llm_sikh_bias_responses.csv")
+            main_df = pd.read_csv("data/combined/llm_sikh_bias_responses.csv")
             prompt_row = main_df[main_df['Prompt ID'] == prompt_id]
             if not prompt_row.empty:
                 prompt_text = prompt_row.iloc[0]['Prompt Text']

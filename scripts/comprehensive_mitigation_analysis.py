@@ -39,12 +39,12 @@ class ComprehensiveMitigationAnalysis:
     def load_baseline_data(self):
         """Load all baseline files and combine them."""
         baseline_files = [
-            'data/llm_sikh_bias_responses_Narveer_claude-3-haiku-20240307_adjusted_20250708_175346.csv',
-            'data/llm_sikh_bias_responses_Noor_gpt-4.csv',
-            'data/llm_sikh_bias_responses_Jaspreet_claude-3-haiku-20240307.csv',
-            'data/llm_sikh_bias_responses_Harpreet_llama-3.3-70b-versatile.csv',
-            'data/llm_sikh_bias_responses_Gurleen_gpt-4.csv',
-            'data/llm_sikh_bias_responses_Anu_llama-3.3-70b-versatile.csv'
+            'data/processed/llm_sikh_bias_responses_Narveer_claude-3-haiku-20240307_adjusted_20250708_175346.csv',
+            'data/processed/llm_sikh_bias_responses_Noor_gpt-4.csv',
+            'data/processed/llm_sikh_bias_responses_Jaspreet_claude-3-haiku-20240307.csv',
+            'data/processed/llm_sikh_bias_responses_Harpreet_llama-3.3-70b-versatile.csv',
+            'data/processed/llm_sikh_bias_responses_Gurleen_gpt-4.csv',
+            'data/processed/llm_sikh_bias_responses_Anu_llama-3.3-70b-versatile.csv'
         ]
         
         baseline_data = []

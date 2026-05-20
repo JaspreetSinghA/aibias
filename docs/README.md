@@ -118,6 +118,43 @@ Groq provides several advantages for this research:
    - Get from: https://huggingface.co/settings/tokens
    - Add to `.env`: `HUGGINGFACE_TOKEN=your_token_here`
 
+## 📊 Statistical Analysis
+
+### Inter-Rater Agreement (IRA)
+
+Human evaluation reliability was assessed using Krippendorff's alpha (interval metric) and linearly weighted Cohen's kappa across five bias dimensions: Accuracy, Relevance, Fairness, Neutrality, Representation.
+
+**Rater pairings (54 prompts each):**
+- GPT-4: Gurleen + Noor
+- LLaMA-3.3-70B: Anu + Harpreet
+- Claude-3-Haiku: Jaspreet + Narveer (16 matched prompts — limited)
+
+**Key results:**
+
+| Model | Alpha range | Interpretation |
+|---|---|---|
+| GPT-4 | −0.43 to 0.02 | Below chance to slight |
+| LLaMA-3.3-70B | 0.20 to 0.33 | Slight to fair |
+| Claude-3-Haiku | −0.57 to 0.26 (n=16) | Unreliable — limited sample |
+
+**Cross-model comparison (Mann-Whitney U):** GPT-4 and LLaMA differ significantly on Accuracy and Relevance (p<0.01, small effect). No significant difference on Fairness, Neutrality, or Representation.
+
+**Scripts:**
+```bash
+# Process raw rater xlsx files → clean CSVs
+python3 scripts/process_raw_ratings.py
+
+# Compute IRA statistics and cross-model comparison
+python3 scripts/inter_rater_agreement.py
+```
+
+**Outputs:**
+- `reports/inter_rater_agreement/ira_full_report.txt` — full report with methodology and paper-ready text
+- `reports/inter_rater_agreement/ira_summary.csv` — machine-readable stats table
+- `data/processed/llm_sikh_bias_responses_<Rater>_<model>.csv` — cleaned per-rater rating files
+
+---
+
 ## 📁 Project Structure
 
 ```

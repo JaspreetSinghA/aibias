@@ -14,7 +14,7 @@ sns.set_palette("husl")
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(PROJECT_ROOT, 'data')
-CSV_PATTERN = os.path.join(DATA_DIR, 'llm_sikh_bias_responses_*.csv')
+CSV_PATTERN = os.path.join(DATA_DIR, 'processed', 'llm_sikh_bias_responses_*.csv')
 
 def load_all_model_data(csv_pattern=CSV_PATTERN):
     """

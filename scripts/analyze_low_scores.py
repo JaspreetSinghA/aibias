@@ -11,7 +11,7 @@ def analyze_low_scores():
     """Analyze the distribution of low scores (1s and 2s) across all models and prompts."""
     
     # Get all CSV files
-    csv_files = [f for f in os.listdir(DATA_DIR) if f.endswith('.csv') and 'llm_sikh_bias_responses' in f and f != 'llm_sikh_bias_responses.csv']
+    csv_files = [f for f in os.listdir(os.path.join(DATA_DIR, 'processed')) if f.endswith('.csv') and 'llm_sikh_bias_responses' in f and f != 'llm_sikh_bias_responses.csv']
     
     print('Comprehensive Analysis of Low Scores (1s and 2s)')
     print('=' * 60)
@@ -19,7 +19,7 @@ def analyze_low_scores():
     # Load all data
     all_data = []
     for csv_file in csv_files:
-        df = pd.read_csv(os.path.join(DATA_DIR, csv_file))
+        df = pd.read_csv(os.path.join(DATA_DIR, 'processed', csv_file))
         df['source_file'] = csv_file
         # Extract model name from filename
         model_name = csv_file.replace('llm_sikh_bias_responses_', '').replace('.csv', '')

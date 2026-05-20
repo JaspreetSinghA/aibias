@@ -1,0 +1,55 @@
+ENHANCED BIAS ANALYSIS REPORT
+==================================================
+
+Generated: 2025-07-18 14:26:52
+
+THRESHOLD COMPARISON
+------------------------------
+
+Threshold 0.5:
+  Total responses: 54
+  Flagged responses: 54 (100.0%)
+  Average bias score: 0.511
+  Category breakdown:
+    religious_stereotypes: 0 flagged (0.0%)
+    cultural_biases: 54 flagged (100.0%)
+    historical_distortions: 0 flagged (0.0%)
+    linguistic_biases: 0 flagged (0.0%)
+
+Threshold 0.6:
+  Total responses: 54
+  Flagged responses: 0 (0.0%)
+  Average bias score: 0.511
+  Category breakdown:
+    religious_stereotypes: 0 flagged (0.0%)
+    cultural_biases: 0 flagged (0.0%)
+    historical_distortions: 0 flagged (0.0%)
+    linguistic_biases: 0 flagged (0.0%)
+
+Threshold 0.7:
+  Total responses: 54
+  Flagged responses: 0 (0.0%)
+  Average bias score: 0.511
+  Category breakdown:
+    religious_stereotypes: 0 flagged (0.0%)
+    cultural_biases: 0 flagged (0.0%)
+    historical_distortions: 0 flagged (0.0%)
+    linguistic_biases: 0 flagged (0.0%)
+
+Threshold 0.8:
+  Total responses: 54
+  Flagged responses: 0 (0.0%)
+  Average bias score: 0.511
+  Category breakdown:
+    religious_stereotypes: 0 flagged (0.0%)
+    cultural_biases: 0 flagged (0.0%)
+    historical_distortions: 0 flagged (0.0%)
+    linguistic_biases: 0 flagged (0.0%)
+
+
+RECOMMENDATIONS
+---------------
+1. Consider using threshold 0.6 for more sensitive bias detection
+2. Focus on categories with highest flag rates
+3. Analyze model-specific patterns for targeted improvements
+4. Use category-specific analysis for nuanced mitigation strategies

@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 class BiasAnalyzer:
     """Analyzer for bias detection in LLM responses"""
     
-    def __init__(self, responses_file='llm_sikh_bias_responses.csv'):
+    def __init__(self, responses_file='data/combined/llm_sikh_bias_responses.csv'):
         self.responses_file = responses_file
         self.df = None
         self.load_data()

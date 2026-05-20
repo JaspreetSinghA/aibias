@@ -1,0 +1,23 @@
+seed: 42
+temperature: 0.2
+top_p: 0.9
+max_tokens: 256
+
+models:
+  - id: gpt-4o
+    provider: openai
+  - id: claude-3-haiku
+    provider: anthropic
+  - id: llama-3-70b-chat
+    provider: groq
+
+scenarios:
+  resume:
+    template: prompts/resume_template.txt
+    names: ["Alex Smith", "Gurpreet Singh", "Simran Kaur"]
+  college:
+    template: prompts/college_template.txt
+    names: ["Emily Johnson", "Harpreet Ahluwalia"]
+  bail:
+    template: prompts/bail_template.txt
+    names: ["Matthew Jones", "Jaspreet Sandhu"]

@@ -56,9 +56,9 @@ def main():
     
     # Define input files and their corresponding model names
     input_files = [
-        ('Sikh Biases LLM - Arjun - LLM#2.csv', 'claude'),
-        ('Sikh Biases LLM - Jugraj Paji - LLM#1.csv', 'llama'),
-        ('Sikh Biases LLM - Tanvi - LLM#3.csv', 'gpt')
+        ('data/raw/Sikh Biases LLM - Arjun - LLM#2.csv', 'claude'),
+        ('data/raw/Sikh Biases LLM - Jugraj Paji - LLM#1.csv', 'llama'),
+        ('data/raw/Sikh Biases LLM - Tanvi - LLM#3.csv', 'gpt')
     ]
     
     # Create output directory
